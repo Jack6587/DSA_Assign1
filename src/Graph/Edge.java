@@ -52,7 +52,11 @@ public class Edge implements Serializable {
 	 * between two 2D points, p1 and p2, that are the positions of each node.
 	 */
 	private double calculateWeight() {
-		// TODO
+		Position fromNodePosition = fromNode.getPosition();
+		Position toNodePosition = toNode.getPosition();
+		
+		double fromNodeElevation = fromNode.getElevation();
+		double toNodeElevation = toNode.getElevation();
 		
 		return -1;
 	}

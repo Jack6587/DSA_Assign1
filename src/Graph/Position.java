@@ -28,7 +28,6 @@ public class Position implements Serializable {
 	 * @return The distance between the points
 	 */
 	public double distance(Position v2) {
-		// TODO
 		
 		double dx = v2.x - this.x;
 		double dy = v2.y - this.y;
