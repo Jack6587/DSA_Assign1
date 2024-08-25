@@ -21,7 +21,9 @@ public class Edge implements Serializable {
 	 * @param node2
 	 */
 	public Edge(Node fromNode, Node toNode) {
-		// TODO
+		this.fromNode = fromNode;
+		this.toNode = toNode;
+		this.weight = calculateWeight();
 		
 	}
 
