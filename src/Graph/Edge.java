@@ -58,7 +58,11 @@ public class Edge implements Serializable {
 		double fromNodeElevation = fromNode.getElevation();
 		double toNodeElevation = toNode.getElevation();
 		
-		return -1;
+		double distance = fromNodePosition.distance(toNodePosition);
+		
+		double weight = distance * Math.abs(0.01 + fromNodeElevation - toNodeElevation);
+		
+		return weight;
 	}
 
 	public double getWeight() {
