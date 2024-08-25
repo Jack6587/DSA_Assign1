@@ -30,7 +30,11 @@ public class Position implements Serializable {
 	public double distance(Position v2) {
 		// TODO
 		
-		return -1.0;
+		double dx = v2.x - this.x;
+		double dy = v2.y - this.y;
+		
+		return Math.sqrt(dx * dx + dy * dy);
+		
 	}
 
 	@Override
