@@ -33,6 +33,7 @@ public class Edge implements Serializable {
 
 	public void setFromNode(Node node) {
 		this.fromNode = node;
+		this.weight = calculateWeight();
 	}
 
 	public Node getToNode() {
@@ -41,6 +42,7 @@ public class Edge implements Serializable {
 
 	public void setToNode(Node node) {
 		this.toNode = node;
+		this.weight = calculateWeight();
 	}
 
 	/**
