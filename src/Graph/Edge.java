@@ -60,7 +60,7 @@ public class Edge implements Serializable {
 		
 		double distance = fromNodePosition.distance(toNodePosition);
 		
-		double weight = distance * Math.abs(0.01 + fromNodeElevation - toNodeElevation);
+		double weight = distance * (0.01 + Math.abs(fromNodeElevation - toNodeElevation));
 		
 		return weight;
 	}
