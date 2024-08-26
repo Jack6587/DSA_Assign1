@@ -33,7 +33,24 @@ public class Graph {
 		for (int i = 0; i < nodes.length; i++) {
 			Node current = nodes[i];
 			int row = i / size;
-			int column = i % size;
+			int column = i % size; // if column = 0, no west, north-west or south-west
+			
+			if(column > 0) { // west nodes
+				Node westNode = nodes[i - 1];
+				current.getEdges().add(new Edge(current, westNode));
+			}
+			if(row > 0) { // north nodes
+				Node northNode = nodes[i - size];
+				current.getEdges().add(new Edge(current, northNode));
+			}
+			if(column < size - 1) { // east nodes
+				Node eastNode = nodes[i + 1];
+				current.getEdges().add(new Edge(current, eastNode));
+			}
+			if(row < size - 1) { // south nodes
+				Node southNode = nodes[i + size];
+				current.getEdges().add(new Edge(current, southNode));
+			}
 
 		}
 
