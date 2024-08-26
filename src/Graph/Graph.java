@@ -51,6 +51,22 @@ public class Graph {
 				Node southNode = nodes[i + size];
 				current.getEdges().add(new Edge(current, southNode));
 			}
+			if(row > 0 && column > 0) { // north-west nodes
+				Node northWestNode = nodes[i - size - 1];
+				current.getEdges().add(new Edge(current, northWestNode));
+			}
+			if(row > 0 && column < size - 1) { // north-east nodes
+				Node northEastNode = nodes[i - size + 1];
+				current.getEdges().add(new Edge(current, northEastNode));
+			}
+			if(row < size - 1 && column > 0) { // south-west nodes
+				Node southWestNode = nodes[i + size - 1];
+				current.getEdges().add(new Edge(current, southWestNode));
+			}
+			if(row < size - 1 && column < size - 1) { // south-east nodes
+				Node southEastNode = nodes[i + size + 1];
+				current.getEdges().add(new Edge(current, southEastNode));
+			}
 
 		}
 
