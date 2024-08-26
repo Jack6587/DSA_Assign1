@@ -80,7 +80,13 @@ public class Graph {
 	 * @return The edge between the nodes, or null if not found
 	 */
 	public Edge getEdge(Node source, Node destination) {
-		// TODO
+		ArrayList<Edge> edges = source.getEdges();
+		
+		for(Edge edge : edges) {
+			if(edge.getToNode().equals(destination)) {
+				return edge;
+			}
+		}
 
 		return null;
 	}
