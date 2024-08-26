@@ -32,8 +32,8 @@ public class Graph {
 		
 		for (int i = 0; i < nodes.length; i++) {
 			Node current = nodes[i];
-			int row = i / 10;
-			int column = i % 10;
+			int row = i / size;
+			int column = i % size;
 
 		}
 
