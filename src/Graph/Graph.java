@@ -28,7 +28,10 @@ public class Graph {
 	 * @return An array of connected Node objects
 	 */
 	public void connectNodes(Node[] nodes) {
+		int size = 10; // size of the grid
+		
 		for (int i = 0; i < nodes.length; i++) {
+			Node current = nodes[i];
 			int row = i / 10;
 			int column = i % 10;
 
