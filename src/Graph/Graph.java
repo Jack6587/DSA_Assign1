@@ -103,11 +103,28 @@ public class Graph {
 			return 0;
 		}
 		
+		double totalWeight = 0;
+		
 		for(int i = 0; i < vertices.length - 1; i++) {
+			Node fromNode = vertices[i];
+			Node toNode = vertices[i + 1];
 			
+			Edge connectingEdge = null;
+			
+			for(Edge edge : fromNode.getEdges()) {
+				if(edge.getToNode().equals(toNode)) {
+					connectingEdge = edge;
+				}
+			}
+			
+			if(connectingEdge == null) {
+				return Double.POSITIVE_INFINITY;
+			}
+			
+			totalWeight += connectingEdge.getWeight();
 		}
 
-		return 0;
+		return totalWeight;
 	}
 
 
