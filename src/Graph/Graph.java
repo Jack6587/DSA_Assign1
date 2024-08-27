@@ -98,7 +98,14 @@ public class Graph {
 	 * @return The total cost of travel, or if no edge Double.POSITIVE_INFINITY. 
 	 */
 	public double calculateTotalWeight(Node[] vertices) {
-		// TODO
+		
+		if(vertices.length == 0) {
+			return 0;
+		}
+		
+		for(int i = 0; i < vertices.length - 1; i++) {
+			
+		}
 
 		return 0;
 	}
