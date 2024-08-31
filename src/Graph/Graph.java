@@ -123,7 +123,7 @@ public class Graph {
 			
 			totalWeight += connectingEdge.getWeight();
 		}
-
+		
 		return totalWeight;
 	}
 
@@ -136,7 +136,11 @@ public class Graph {
 	 * @return An array of Node objects representing the path from start to target, in that order
 	 */
 	public Node[] breadthFirstSearch(Node start, Node target) {
-		// TODO
+		Queue<Node> queue = new LinkedList<>();
+		boolean[] visited = new boolean[totalNodes];
+		
+		queue.offer(start);
+		visited[start] = true;
 
 		return null;
 	}
