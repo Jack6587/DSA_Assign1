@@ -157,6 +157,8 @@ public class Graph {
 					step = path.get(step);
 				}
 				
+				Collections.reverse(result);
+				
 				return result.toArray(new Node[0]);
 			}
 			
