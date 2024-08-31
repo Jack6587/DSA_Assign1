@@ -7,6 +7,7 @@ import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Hashtable;
 import java.util.LinkedList;
+import java.util.List;
 import java.util.Map;
 import java.util.Queue;
 import java.util.Set;
@@ -144,18 +145,26 @@ public class Graph {
 		visited.add(start);
 		path.put(start, null);
 
-		while(queue.isEmpty()) {
+		while(!queue.isEmpty()) {
 			Node current = queue.poll();
 			
 			if(current.equals(target)) {
+				List<Node> result = new ArrayList<>();
 				
+				Node step = target;
+				while(step != null) {
+					result.add(step);
+					step = path.get(step);
+				}
+				
+				return result;
 			}
 			
 			for(Edge edge : current.getEdges()) {
 				Node neighbour = edge.getToNode();
 				if(!visited.contains(neighbour)) {
-					visited.add(neighbour);
 					queue.offer(neighbour);
+					visited.add(neighbour);
 					path.put(neighbour, current);
 				}
 			}
