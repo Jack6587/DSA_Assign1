@@ -157,7 +157,7 @@ public class Graph {
 					step = path.get(step);
 				}
 				
-				return result;
+				return result.toArray(new Node[0]);
 			}
 			
 			for(Edge edge : current.getEdges()) {
