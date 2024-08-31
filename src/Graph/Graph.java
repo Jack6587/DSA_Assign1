@@ -137,10 +137,10 @@ public class Graph {
 	 */
 	public Node[] breadthFirstSearch(Node start, Node target) {
 		Queue<Node> queue = new LinkedList<>();
-		boolean[] visited = new boolean[totalNodes];
+		Set<Node> visited = new HashSet<>();
 		
 		queue.offer(start);
-		visited[start] = true;
+		visited.add(start);
 
 		return null;
 	}
