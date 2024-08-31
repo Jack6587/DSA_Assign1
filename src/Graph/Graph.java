@@ -150,7 +150,18 @@ public class Graph {
 			if(current.equals(target)) {
 				
 			}
+			
+			for(Edge edge : current.getEdges()) {
+				Node neighbour = edge.getToNode();
+				if(!visited.contains(neighbour)) {
+					visited.add(neighbour);
+					queue.offer(neighbour);
+					path.put(neighbour, current);
+				}
+			}
 		}
+		
+		return new Node[0];
 	}
 
 
