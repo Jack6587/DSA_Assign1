@@ -191,11 +191,30 @@ public class Graph {
 			Collections.reverse(path);
 			return path.toArray(new Node[0]);
 		}
-		return null;
+		return new Node[0];
 	}
 	
 	public boolean dfsHelper(Node current, Node target, Set<Node> visited, List<Node> path) {
-		visited.add(current);	}
+		visited.add(current);
+		
+		if(current.equals(target)) {
+			path.add(current);
+			return true;
+		}
+		
+		for(Edge edge : current.getEdges()) {
+			Node neighbour = edge.getToNode();
+			
+			if(!visited.contains(neighbour)) {
+				if(dfsHelper(neighbour, target, visited, path)) {
+					path.add(current);
+					return true;
+				}
+			}
+		}
+		
+		return false;
+	}
 
 
 	/**
