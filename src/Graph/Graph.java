@@ -184,7 +184,8 @@ public class Graph {
 	 * @return An array of Node objects representing the path from start to target, in that order
 	 */
 	public Node[] depthFirstSearch(Node start, Node target) {
-		// TODO
+		Set<Node> visited = new HashSet<>();
+		List<Node> path = new ArrayList<>();
 
 		return null;
 	}
