@@ -187,8 +187,15 @@ public class Graph {
 		Set<Node> visited = new HashSet<>();
 		List<Node> path = new ArrayList<>();
 
+		if(dfsHelper(start, target, visited, path)) {
+			Collections.reverse(path);
+			return path.toArray(new Node[0]);
+		}
 		return null;
 	}
+	
+	public boolean dfsHelper(Node current, Node target, Set<Node> visited, List<Node> path) {
+		visited.add(current);	}
 
 
 	/**
