@@ -12,6 +12,8 @@ import java.util.Map;
 import java.util.Queue;
 import java.util.Set;
 
+import GUI.GraphLoader;
+
 /**
  * Represents a non-directional graph where each vertex
  * is a Node object. Connections between nodes are based
@@ -226,7 +228,7 @@ public class Graph {
 	 * @return An array of Node objects representing the path from start to target, in that order
 	 */
 	public Node[] dijkstrasSearch(Node start, Node target) {
-		// TODO
+		Node[] nodes = GraphLoader.getNodes();
 
 		return null;
 	}
