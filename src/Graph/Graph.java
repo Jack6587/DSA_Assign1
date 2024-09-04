@@ -256,16 +256,23 @@ public class Graph {
 		
 		while(!vMinusS.isEmpty()) {
 			double minDist = Double.POSITIVE_INFINITY;
-			int u = -1;
+			int currentIndex = -1;
 			for(int v : vMinusS) {
 				if(dist[v] < minDist) {
 					minDist = dist[v];
-					u = v;
+					currentIndex = v;
 				}
 			}
 			
-			vMinusS.remove(u); // Node u is removed which marks it as visited
-			Node currentNode = nodes[u];
+			vMinusS.remove(currentIndex); // Node u is removed which marks it as visited
+			Node currentNode = nodes[currentIndex];
+			
+			for(Edge edge : currentNode.getEdges()) {
+				Node neighbour = edge.getToNode();
+				int neighbourIndex = nodeIndex.get(neighbour);
+				
+				
+			}
 		}
 		
 		List<Node> path = new ArrayList<>();
