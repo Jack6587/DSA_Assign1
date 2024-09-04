@@ -243,6 +243,21 @@ public class Graph {
 		int[] pred = new int[numV];
 		double[] dist = new double[numV];
 		
+		for(int i = 0; i < numV; i++) {
+			if(i == startNodeValue) {
+				dist[i] = 0;
+			}
+			else {
+				dist[i] = Double.POSITIVE_INFINITY;
+			}
+			pred[i] = -1; // no predecessors yet
+			vMinusS.add(i);
+		}
+		
+		while(!vMinusS.isEmpty()) {
+			
+		}
+		
 		return null;
 	}
 
