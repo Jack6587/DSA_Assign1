@@ -283,6 +283,12 @@ public class Graph {
 		}
 		
 		List<Node> path = new ArrayList<>();
+		int currentNodeIndex = targetNodeValue;
+		while(currentNodeIndex != -1) {
+			path.add(nodes[currentNodeIndex]);
+			currentNodeIndex = pred[currentNodeIndex];
+		}
+		Collections.reverse(path);
 		
 		return path.toArray(new Node[0]);
 	}
