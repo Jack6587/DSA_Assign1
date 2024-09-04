@@ -240,6 +240,8 @@ public class Graph {
 		int targetNodeValue = nodeIndex.get(target);
 		Set<Integer> vMinusS = new HashSet<>();
 		
+		int[] pred = new int[numV];
+		double[] dist = new double[numV];
 		
 		return null;
 	}
