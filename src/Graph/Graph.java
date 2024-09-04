@@ -229,7 +229,13 @@ public class Graph {
 	 */
 	public Node[] dijkstrasSearch(Node start, Node target) {
 		Node[] nodes = GraphLoader.getNodes();
-
+		
+		int numV = nodes.length;
+		Map<Node, Integer> nodeIndex = new HashMap<>();
+		for(int i = 0; i < numV; i++) {
+			nodeIndex.put(nodes[i], i);
+		}
+		
 		return null;
 	}
 
