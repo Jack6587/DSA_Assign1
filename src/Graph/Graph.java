@@ -236,6 +236,11 @@ public class Graph {
 			nodeIndex.put(nodes[i], i);
 		}
 		
+		int startNodeValue = nodeIndex.get(start);
+		int targetNodeValue = nodeIndex.get(target);
+		Set<Integer> vMinusS = new HashSet<>();
+		
+		
 		return null;
 	}
 
