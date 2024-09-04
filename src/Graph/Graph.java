@@ -255,7 +255,17 @@ public class Graph {
 		}
 		
 		while(!vMinusS.isEmpty()) {
+			double minDist = Double.POSITIVE_INFINITY;
+			int u = -1;
+			for(int v : vMinusS) {
+				if(dist[v] < minDist) {
+					minDist = dist[v];
+					u = v;
+				}
+			}
 			
+			vMinusS.remove(u); // Node u is removed which marks it as visited
+			Node currentNode = nodes[u];
 		}
 		
 		return null;
