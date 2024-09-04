@@ -268,7 +268,9 @@ public class Graph {
 			Node currentNode = nodes[u];
 		}
 		
-		return null;
+		List<Node> path = new ArrayList<>();
+		
+		return path.toArray(new Node[0]);
 	}
 
 }
