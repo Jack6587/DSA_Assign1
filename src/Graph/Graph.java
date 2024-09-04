@@ -271,6 +271,13 @@ public class Graph {
 				Node neighbour = edge.getToNode();
 				int neighbourIndex = nodeIndex.get(neighbour);
 				
+				if(vMinusS.contains(neighbourIndex)) {
+					double weight = edge.getWeight();
+					if(dist[currentIndex] + weight < dist[neighbourIndex]) {
+						dist[neighbourIndex] = dist[currentIndex] + weight;
+						pred[neighbourIndex] = currentIndex;
+					}
+				}
 				
 			}
 		}
