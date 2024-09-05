@@ -38,37 +38,37 @@ public class Graph {
 			int row = i / size; // calculates the current row index for the given node
 			int column = i % size; // if column = 0, no west, north-west or south-west. Calculates column index for the given node
 			
-			if(column > 0) { // west nodes
-				Node westNode = nodes[i - 1];
-				current.getEdges().add(new Edge(current, westNode));
-			}
-			if(row > 0) { // north nodes
-				Node northNode = nodes[i - size];
-				current.getEdges().add(new Edge(current, northNode));
-			}
 			if(column < size - 1) { // east nodes
 				Node eastNode = nodes[i + 1];
 				current.getEdges().add(new Edge(current, eastNode));
+			}
+			if(column > 0) { // west nodes
+				Node westNode = nodes[i - 1];
+				current.getEdges().add(new Edge(current, westNode));
 			}
 			if(row < size - 1) { // south nodes
 				Node southNode = nodes[i + size];
 				current.getEdges().add(new Edge(current, southNode));
 			}
-			if(row > 0 && column > 0) { // north-west nodes
-				Node northWestNode = nodes[i - size - 1];
-				current.getEdges().add(new Edge(current, northWestNode));
+			if(row > 0) { // north nodes
+				Node northNode = nodes[i - size];
+				current.getEdges().add(new Edge(current, northNode));
 			}
 			if(row > 0 && column < size - 1) { // north-east nodes
 				Node northEastNode = nodes[i - size + 1];
 				current.getEdges().add(new Edge(current, northEastNode));
 			}
-			if(row < size - 1 && column > 0) { // south-west nodes
-				Node southWestNode = nodes[i + size - 1];
-				current.getEdges().add(new Edge(current, southWestNode));
-			}
 			if(row < size - 1 && column < size - 1) { // south-east nodes
 				Node southEastNode = nodes[i + size + 1];
 				current.getEdges().add(new Edge(current, southEastNode));
+			}
+			if(row > 0 && column > 0) { // north-west nodes
+				Node northWestNode = nodes[i - size - 1];
+				current.getEdges().add(new Edge(current, northWestNode));
+			}
+			if(row < size - 1 && column > 0) { // south-west nodes
+				Node southWestNode = nodes[i + size - 1];
+				current.getEdges().add(new Edge(current, southWestNode));
 			}
 
 		}
