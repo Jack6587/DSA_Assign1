@@ -29,10 +29,10 @@ public class Position implements Serializable {
 	 */
 	public double distance(Position v2) {
 		
-		double dx = v2.x - this.x;
-		double dy = v2.y - this.y;
+		double dx = v2.x - this.x; // difference in x coordinates of both points
+		double dy = v2.y - this.y; // difference in y coordinates of both points
 		
-		return Math.sqrt(dx * dx + dy * dy);
+		return Math.sqrt(dx * dx + dy * dy); // calculates Euclidean distance following the formula
 		
 	}
 

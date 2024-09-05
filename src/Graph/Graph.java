@@ -35,8 +35,8 @@ public class Graph {
 		
 		for (int i = 0; i < nodes.length; i++) {
 			Node current = nodes[i];
-			int row = i / size;
-			int column = i % size; // if column = 0, no west, north-west or south-west
+			int row = i / size; // calculates the current row index for the given node
+			int column = i % size; // if column = 0, no west, north-west or south-west. Calculates column index for the given node
 			
 			if(column > 0) { // west nodes
 				Node westNode = nodes[i - 1];
