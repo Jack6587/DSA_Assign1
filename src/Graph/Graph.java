@@ -86,7 +86,7 @@ public class Graph {
 		ArrayList<Edge> edges = source.getEdges();
 		
 		for(Edge edge : edges) {
-			if(edge.getToNode().equals(destination)) {
+			if(edge.getFromNode().equals(source) && edge.getToNode().equals(destination)) {
 				return edge;
 			}
 		}
