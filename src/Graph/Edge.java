@@ -56,17 +56,17 @@ public class Edge implements Serializable {
 	 * between two 2D points, p1 and p2, that are the positions of each node.
 	 */
 	private double calculateWeight() {
-		Position fromNodePosition = fromNode.getPosition();
-		Position toNodePosition = toNode.getPosition();
+		Position fromNodePosition = fromNode.getPosition(); // from node position - start point of the edge
+		Position toNodePosition = toNode.getPosition(); // to node position - end point of the edge
 		
-		double fromNodeElevation = fromNode.getElevation();
-		double toNodeElevation = toNode.getElevation();
+		double fromNodeElevation = fromNode.getElevation(); // elevation of from node
+		double toNodeElevation = toNode.getElevation(); // elevation of to node
 		
-		double distance = fromNodePosition.distance(toNodePosition);
+		double distance = fromNodePosition.distance(toNodePosition); // Euclidean distance between from and to node
 		
-		double weight = distance * (0.01 + Math.abs(fromNodeElevation - toNodeElevation));
+		double weight = distance * (0.01 + Math.abs(fromNodeElevation - toNodeElevation)); // calculates weight (distance multiplied by absolute difference between the two elevations 
 		
-		return weight;
+		return weight; // returns calculated weight
 	}
 
 	public double getWeight() {
