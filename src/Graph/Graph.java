@@ -186,21 +186,30 @@ public class Graph {
 	 * @return An array of Node objects representing the path from start to target, in that order
 	 */
 	public Node[] depthFirstSearch(Node start, Node target) {
+		if(start == null || target == null) {
+			return null;
+		}
+		
 		Set<Node> visited = new HashSet<>();
 		List<Node> path = new ArrayList<>();
 
 		if(dfsHelper(start, target, visited, path)) {
-			Collections.reverse(path);
 			return path.toArray(new Node[0]);
+		} else {
+			return new Node[0];
 		}
-		return new Node[0];
+
 	}
 	
 	public boolean dfsHelper(Node current, Node target, Set<Node> visited, List<Node> path) {
+		if(visited.contains(current)) {
+			return false;
+		}
+		
 		visited.add(current);
+		path.add(current);
 		
 		if(current.equals(target)) {
-			path.add(current);
 			return true;
 		}
 		
@@ -209,12 +218,12 @@ public class Graph {
 			
 			if(!visited.contains(neighbour)) {
 				if(dfsHelper(neighbour, target, visited, path)) {
-					path.add(current);
 					return true;
 				}
 			}
 		}
 		
+		path.remove(path.size() - 1);
 		return false;
 	}
 
