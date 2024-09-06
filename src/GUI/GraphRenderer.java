@@ -20,15 +20,15 @@ class GraphRenderer {
 
 	// For internal testing purposes
 	// Change to test different paths
-	private final int START_NODE = 0;
-	private final int TARGET_NODE = 99;
+	private final int START_NODE = 99;
+	private final int TARGET_NODE = 4;
 
 	// Change this value to increase or decrease animation speed
 	private final int ANIMATION_DELAY = 500;
 
 	// Change this string to match the EXACT graph search method you want to animate
 	// "breadthFirstSearch", "depthFirstSearch", "dijkstrasSearch"
-	private final String METHOD = "breadthFirstSearch"; 
+	private final String METHOD = "depthFirstSearch"; 
 
 	private GraphicsContext gc;
 	private GraphicsContext pgc;

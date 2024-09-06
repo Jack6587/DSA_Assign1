@@ -38,36 +38,36 @@ public class Graph {
 			int row = i / size; // calculates the current row index for the given node
 			int column = i % size; // if column = 0, no west, north-west or south-west. Calculates column index for the given node
 			
-			if(column < size - 1) { // east nodes
-				Node eastNode = nodes[i + 1];
-				current.getEdges().add(new Edge(current, eastNode));
+			if(column < size - 1) { // east nodes - basically saying that a node is not in the last column, so would have a node to the right (east)
+				Node eastNode = nodes[i + 1]; // this should get the node to the right
+				current.getEdges().add(new Edge(current, eastNode)); // edge now exists between current node and east node
 			}
-			if(column > 0) { // west nodes
-				Node westNode = nodes[i - 1];
-				current.getEdges().add(new Edge(current, westNode));
+			if(column > 0) { // west nodes - opposite of east - as long as the node is not in the first column, it would have a node to the left
+				Node westNode = nodes[i - 1]; // this should get the node to the left
+				current.getEdges().add(new Edge(current, westNode)); // every time this is called, an edge is created and added to the current node's list of edges
 			}
-			if(row < size - 1) { // south nodes
-				Node southNode = nodes[i + size];
+			if(row < size - 1) { // south nodes - if not in the last row (bottom)
+				Node southNode = nodes[i + size]; // this should get the node directly below
 				current.getEdges().add(new Edge(current, southNode));
 			}
-			if(row > 0) { // north nodes
-				Node northNode = nodes[i - size];
+			if(row > 0) { // north nodes - if not in the first row (top)
+				Node northNode = nodes[i - size]; // this should get the node directly above
 				current.getEdges().add(new Edge(current, northNode));
 			}
-			if(row > 0 && column < size - 1) { // north-east nodes
-				Node northEastNode = nodes[i - size + 1];
+			if(row > 0 && column < size - 1) { // north-east nodes - if not in the first row (same as North node case) or last column (same as East node case)
+				Node northEastNode = nodes[i - size + 1]; // gets node directly above and one to the right
 				current.getEdges().add(new Edge(current, northEastNode));
 			}
-			if(row < size - 1 && column < size - 1) { // south-east nodes
-				Node southEastNode = nodes[i + size + 1];
+			if(row < size - 1 && column < size - 1) { // south-east nodes - if not in the last row and the last column
+				Node southEastNode = nodes[i + size + 1]; // gets node directly below and one to the right
 				current.getEdges().add(new Edge(current, southEastNode));
 			}
-			if(row > 0 && column > 0) { // north-west nodes
-				Node northWestNode = nodes[i - size - 1];
+			if(row > 0 && column > 0) { // north-west nodes - if not in the first row and first column
+				Node northWestNode = nodes[i - size - 1]; // gets node directly above and one to the left
 				current.getEdges().add(new Edge(current, northWestNode));
 			}
-			if(row < size - 1 && column > 0) { // south-west nodes
-				Node southWestNode = nodes[i + size - 1];
+			if(row < size - 1 && column > 0) { // south-west nodes - if not in the last row and first column
+				Node southWestNode = nodes[i + size - 1]; // gets node directly below and one to the left
 				current.getEdges().add(new Edge(current, southWestNode));
 			}
 
