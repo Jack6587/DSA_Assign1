@@ -192,45 +192,48 @@ public class Graph {
 	 * @return An array of Node objects representing the path from start to target, in that order
 	 */
 	public Node[] depthFirstSearch(Node start, Node target) {
-		if(start == null || target == null) {
+		if(start == null || target == null) { // if start or target is null, do nothing
 			return null;
 		}
 		
-		Set<Node> visited = new HashSet<>();
-		List<Node> path = new ArrayList<>();
+		Set<Node> visited = new HashSet<>(); // set that manages visited nodes to ensure they are not revisited. A set also ensures duplicate entries do not exist
+		List<Node> path = new ArrayList<>(); // list that stores the path from start to target
 
-		if(dfsHelper(start, target, visited, path)) {
-			return path.toArray(new Node[0]);
+		if(dfsHelper(start, target, visited, path)) { // this calls the helper function to perform DFS
+			return path.toArray(new Node[0]); // if path is found, make the list an array and return
 		} else {
-			return new Node[0];
+			return new Node[0]; // otherwise, return an empty array
 		}
 
 	}
 	
 	public boolean dfsHelper(Node current, Node target, Set<Node> visited, List<Node> path) {
-		if(visited.contains(current)) {
+		if(visited.contains(current)) { // if the current node has already been visited, exit
 			return false;
 		}
 		
+		// add the current node to visited, and add it to the path
 		visited.add(current);
 		path.add(current);
 		
-		if(current.equals(target)) {
+		if(current.equals(target)) { // this indicates a path has been found if current = target
 			return true;
 		}
 		
-		for(Edge edge : current.getEdges()) {
-			Node neighbour = edge.getToNode();
+		for(Edge edge : current.getEdges()) { // iterate over edges of current node
+			Node neighbour = edge.getToNode(); // get a neighbouring node
 			
-			if(!visited.contains(neighbour)) {
-				if(dfsHelper(neighbour, target, visited, path)) {
+			if(!visited.contains(neighbour)) { // if it has not been visited, perform DFS on the node
+				if(dfsHelper(neighbour, target, visited, path)) { // recursion - we jump into dfsHelper again and operate on the neighbour, until we reach the target
 					return true;
 				}
 			}
 		}
 		
-		path.remove(path.size() - 1);
-		return false;
+		path.remove(path.size() - 1); // this is used for backtracking
+		// we remove the most recently added node if we discover the current path does not lead to the target node.
+		// We then jump out of this method and back to the previous for loop iterating over edges
+		return false; // target node was not found in this path
 	}
 
 
