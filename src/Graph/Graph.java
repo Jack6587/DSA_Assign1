@@ -143,42 +143,44 @@ public class Graph {
 	 * @return An array of Node objects representing the path from start to target, in that order
 	 */
 	public Node[] breadthFirstSearch(Node start, Node target) {
-		Queue<Node> queue = new LinkedList<>();
-		Map<Node, Node> path = new HashMap<>();
-		Set<Node> visited = new HashSet<>();
+		Queue<Node> queue = new LinkedList<>(); // creates a queue to manage nodes needing to be explored
+		Map<Node, Node> path = new HashMap<>(); // a map that monitors each node's predecessor from the start to determine the path
+		Set<Node> visited = new HashSet<>(); // a set that monitors all nodes that have already been visited - this is so we don't go back and visit nodes that have already been checked
 		
+		// these add the start node to the queue, and mark it as visited
 		queue.offer(start);
 		visited.add(start);
-		path.put(start, null);
+		
+		path.put(start, null); // starts the path map - the first node, start, has no predecessors, so that value is null
 
-		while(!queue.isEmpty()) {
-			Node current = queue.poll();
+		while(!queue.isEmpty()) { // queue continues until no more nodes to check
+			Node current = queue.poll(); // remove the node at the front of the queue to check
 			
 			if(current.equals(target)) {
-				List<Node> result = new ArrayList<>();
+				List<Node> result = new ArrayList<>(); // path is reconstructed (from start to target) if target is found
 				
-				Node step = target;
+				Node step = target; // we start from the target node and work backwards
 				while(step != null) {
-					result.add(step);
-					step = path.get(step);
+					result.add(step); // adds step to the result list to be returned
+					step = path.get(step); // gets the predecessor node (the value component of the map structure)
 				}
 				
-				Collections.reverse(result);
+				Collections.reverse(result); // reverses the list so that the path is ordered from start to target (instead of the other way around, the way it was constructed)
 				
-				return result.toArray(new Node[0]);
+				return result.toArray(new Node[0]); // converts result list to an array to return
 			}
 			
-			for(Edge edge : current.getEdges()) {
-				Node neighbour = edge.getToNode();
-				if(!visited.contains(neighbour)) {
-					queue.offer(neighbour);
-					visited.add(neighbour);
-					path.put(neighbour, current);
+			for(Edge edge : current.getEdges()) { // iterate over all nodes connected to the current node
+				Node neighbour = edge.getToNode(); // gets a neighbouring node
+				if(!visited.contains(neighbour)) { // if this neighbour has not been visited yet
+					queue.offer(neighbour); // add it to the queue 
+					visited.add(neighbour); // mark as visited 
+					path.put(neighbour, current); // record our current node as the predecessor of this neighbour
 				}
 			}
 		}
 		
-		return new Node[0];
+		return new Node[0]; // returns an empty array if no path is determined
 	}
 
 
