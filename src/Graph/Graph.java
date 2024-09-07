@@ -83,15 +83,16 @@ public class Graph {
 	 * @return The edge between the nodes, or null if not found
 	 */
 	public Edge getEdge(Node source, Node destination) {
-		ArrayList<Edge> edges = source.getEdges();
+		ArrayList<Edge> edges = source.getEdges(); // obtains the list of edges from the given source node
 		
-		for(Edge edge : edges) {
-			if(edge.getFromNode().equals(source) && edge.getToNode().equals(destination)) {
+		for(Edge edge : edges) { // iterates over each edge in the obtained list
+			if(edge.getFromNode().equals(source) && edge.getToNode().equals(destination)) { 
+				// if both the starting point (fromNode) and destination point (toNode) of the edge match the given source and destination nodes, return the edge
 				return edge;
 			}
 		}
 
-		return null;
+		return null; // if no edge is found
 	}
 
 	/**
@@ -102,32 +103,35 @@ public class Graph {
 	 */
 	public double calculateTotalWeight(Node[] vertices) {
 		
-		if(vertices.length == 0) {
+		if(vertices.length == 0) { // if there are no nodes in the given array, the weight is 0
 			return 0;
 		}
 		
-		double totalWeight = 0;
+		double totalWeight = 0; // initialises a totalWeight variable that will be added to and returned
 		
-		for(int i = 0; i < vertices.length - 1; i++) {
-			Node fromNode = vertices[i];
-			Node toNode = vertices[i + 1];
+		for(int i = 0; i < vertices.length - 1; i++) { 
+			// iterates over the nodes array -1 to find edges. The reason I don't loop over the last one is that I am
+			// looking for an edge between the current node and the next node - making it kind of pointless to check the final node if there is nothing after it
+			Node fromNode = vertices[i]; // gets current node - so the from node of the edge
+			Node toNode = vertices[i + 1]; // gets the next node - so the destination node of the edge
 			
-			Edge connectingEdge = null;
+			Edge connectingEdge = null; // currently holds the edge between from and to node
 			
-			for(Edge edge : fromNode.getEdges()) {
-				if(edge.getToNode().equals(toNode)) {
-					connectingEdge = edge;
+			for(Edge edge : fromNode.getEdges()) { // iterates over all edges of the from node to find a connection to the to node
+				if(edge.getToNode().equals(toNode)) { // if the edge points to the next node
+					connectingEdge = edge; // store this edge
 				}
 			}
 			
 			if(connectingEdge == null) {
+				// no valid path found
 				return Double.POSITIVE_INFINITY;
 			}
 			
-			totalWeight += connectingEdge.getWeight();
+			totalWeight += connectingEdge.getWeight(); // add weight of the edge to the total weight
 		}
 		
-		return totalWeight;
+		return totalWeight; // return the total calculated weight
 	}
 
 
