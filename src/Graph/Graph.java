@@ -259,8 +259,8 @@ public class Graph {
 		Set<Integer> vMinusS = new HashSet<>(); // set of all nodes that have not been visited
 		
 		
-		int[] pred = new int[numV]; // stores predecessor of each node
-		double[] dist = new double[numV]; // array that keeps track of the shortest distance established from the start node to EACH node. 
+		int[] pred = new int[numV]; // stores predecessor of each node (helps when reconstructing the shortest path)
+		double[] dist = new double[numV]; // array that keeps track of the shortest distance established from the start node to EACH node in the graph
 		// E.g. Node 20 would have a distance value that corresponds to how far it is from the start node
  		
 		for(int i = 0; i < numV; i++) { // for loop to initialise the dist and pred arrays
@@ -268,47 +268,48 @@ public class Graph {
 				dist[i] = 0; // distance to the start node is obviously 0
 			}
 			else {
-				dist[i] = Double.POSITIVE_INFINITY; // all unvisited nodes' distances are initially set to infinity
+				dist[i] = Double.POSITIVE_INFINITY; // all unvisited nodes' distances are initially set to infinity - it is used so that any valid path found will guaranteed have a lower weight
 			}
 			pred[i] = -1; // no predecessors yet (for every node)
 			vMinusS.add(i); // each node is added to unvisited
 		}
 		
 		while(!vMinusS.isEmpty()) { // while there are nodes not yet visited, find the node with the smallest distance
-			double minDist = Double.POSITIVE_INFINITY;
-			int currentIndex = -1;
-			for(int v : vMinusS) {
-				if(dist[v] < minDist) {
-					minDist = dist[v];
-					currentIndex = v;
+			double minDist = Double.POSITIVE_INFINITY; // starts as infinity because we haven't looked at any nodes yet
+			int currentIndex = -1; // starts as -1, currently don't have a selected node to visit yet
+			for(int v : vMinusS) { // iterates through all unvisited nodes
+				if(dist[v] < minDist) { // here we find the node with the smallest distance
+					minDist = dist[v]; // update minDist to the smallest distance found (e.g. dist[startNode] = 0)
+					currentIndex = v; // current index is set to the node with the smallest distance
 				}
 			}
 			
 			vMinusS.remove(currentIndex); // Current node is removed which marks it as visited
 			Node currentNode = nodes[currentIndex]; // obtain the node of the corresponding index
 			
-			for(Edge edge : currentNode.getEdges()) { // explore all neighbours
-				Node neighbour = edge.getToNode();
-				int neighbourIndex = nodeIndex.get(neighbour);
+			for(Edge edge : currentNode.getEdges()) { // explore all neighbours of the currentIndex
+				Node neighbour = edge.getToNode(); // get the neighbouring node of this edge
+				int neighbourIndex = nodeIndex.get(neighbour); // get the index value of the neighbour node
 				
-				if(vMinusS.contains(neighbourIndex)) {
-					double weight = edge.getWeight();
-					if(dist[currentIndex] + weight < dist[neighbourIndex]) {
-						dist[neighbourIndex] = dist[currentIndex] + weight;
-						pred[neighbourIndex] = currentIndex;
+				if(vMinusS.contains(neighbourIndex)) { // if node has not been visited
+					double weight = edge.getWeight(); // calculate the weight of the current edge
+					if(dist[currentIndex] + weight < dist[neighbourIndex]) { // check if the new path (dist[currentIndex] + weight) is less than the previously known shortest path (dist[neighbourIndex])
+						dist[neighbourIndex] = dist[currentIndex] + weight; // if so, update the shortest distance to the neighbour
+						pred[neighbourIndex] = currentIndex; // set the predecessor of the neighbour to the current node (important for when we backtrack for the path output)
 					}
 				}
 				
 			}
 		}
 		
-		List<Node> path = new ArrayList<>();
-		int currentNodeIndex = targetNodeValue;
-		while(currentNodeIndex != -1) {
-			path.add(nodes[currentNodeIndex]);
-			currentNodeIndex = pred[currentNodeIndex];
+		List<Node> path = new ArrayList<>(); // here, we initialise a path we can use to output the optimal route
+		int currentNodeIndex = targetNodeValue; // we start at the end, with target node value (established earlier in method)
+		while(currentNodeIndex != -1) { // while current node index has not reached the start
+			path.add(nodes[currentNodeIndex]); // add the node to the path
+			currentNodeIndex = pred[currentNodeIndex]; // backtrack to the respective predecessor of a node.
+			// The reason the while loop iterates to -1 is because currentNodeIndex will = -1 when we reach the start node (which has no predecessors)
 		}
-		Collections.reverse(path);
+		Collections.reverse(path); // reverse the path (instead of target to start, now start to target)
 		
 		return path.toArray(new Node[0]);
 	}
