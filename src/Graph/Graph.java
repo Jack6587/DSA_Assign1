@@ -207,6 +207,15 @@ public class Graph {
 
 	}
 	
+	/**
+	 * Performs depth-first search recursively to find a path from current to target node
+	 * This is a helper method used by the depthFirstSearch method
+	 * @param current The current node in the search
+	 * @param target The target node being searched for
+	 * @param visited A set of nodes already visited
+	 * @param path A list that represents the path from the current node up until the target node is found
+	 * @return Boolean: true if a path to the target node is found, false otherwise
+	 */
 	public boolean dfsHelper(Node current, Node target, Set<Node> visited, List<Node> path) {
 		if(visited.contains(current)) { // if the current node has already been visited, exit
 			return false;
@@ -311,7 +320,7 @@ public class Graph {
 		}
 		Collections.reverse(path); // reverse the path (instead of target to start, now start to target)
 		
-		return path.toArray(new Node[0]);
+		return path.toArray(new Node[0]); // output the path as an array of nodes
 	}
 
 }
