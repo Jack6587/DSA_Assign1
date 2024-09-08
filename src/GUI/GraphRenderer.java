@@ -28,7 +28,7 @@ class GraphRenderer {
 
 	// Change this string to match the EXACT graph search method you want to animate
 	// "breadthFirstSearch", "depthFirstSearch", "dijkstrasSearch"
-	private final String METHOD = "depthFirstSearch"; 
+	private final String METHOD = "dijkstrasSearch"; 
 
 	private GraphicsContext gc;
 	private GraphicsContext pgc;
