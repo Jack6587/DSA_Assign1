@@ -246,33 +246,35 @@ public class Graph {
 	 * @return An array of Node objects representing the path from start to target, in that order
 	 */
 	public Node[] dijkstrasSearch(Node start, Node target) {
-		Node[] nodes = GraphLoader.getNodes();
+		Node[] nodes = GraphLoader.getNodes(); // loads all the nodes from the graph using GraphLoader class
 		
-		int numV = nodes.length;
-		Map<Node, Integer> nodeIndex = new HashMap<>();
+		int numV = nodes.length; // number of nodes in the graph
+		Map<Node, Integer> nodeIndex = new HashMap<>(); // used to keep track of each node and its corresponding value, so that we can search and iterate in a simpler way
 		for(int i = 0; i < numV; i++) {
-			nodeIndex.put(nodes[i], i);
+			nodeIndex.put(nodes[i], i); // populates the map with the node (key) and its index (value)
 		}
 		
-		int startNodeValue = nodeIndex.get(start);
-		int targetNodeValue = nodeIndex.get(target);
-		Set<Integer> vMinusS = new HashSet<>();
+		int startNodeValue = nodeIndex.get(start); // gets the value of the start node
+		int targetNodeValue = nodeIndex.get(target); // gets the value of the target node - useful for future referral
+		Set<Integer> vMinusS = new HashSet<>(); // set of all nodes that have not been visited
 		
-		int[] pred = new int[numV];
-		double[] dist = new double[numV];
 		
-		for(int i = 0; i < numV; i++) {
+		int[] pred = new int[numV]; // stores predecessor of each node
+		double[] dist = new double[numV]; // array that keeps track of the shortest distance established from the start node to EACH node. 
+		// E.g. Node 20 would have a distance value that corresponds to how far it is from the start node
+ 		
+		for(int i = 0; i < numV; i++) { // for loop to initialise the dist and pred arrays
 			if(i == startNodeValue) {
-				dist[i] = 0;
+				dist[i] = 0; // distance to the start node is obviously 0
 			}
 			else {
-				dist[i] = Double.POSITIVE_INFINITY;
+				dist[i] = Double.POSITIVE_INFINITY; // all unvisited nodes' distances are initially set to infinity
 			}
-			pred[i] = -1; // no predecessors yet
-			vMinusS.add(i);
+			pred[i] = -1; // no predecessors yet (for every node)
+			vMinusS.add(i); // each node is added to unvisited
 		}
 		
-		while(!vMinusS.isEmpty()) {
+		while(!vMinusS.isEmpty()) { // while there are nodes not yet visited, find the node with the smallest distance
 			double minDist = Double.POSITIVE_INFINITY;
 			int currentIndex = -1;
 			for(int v : vMinusS) {
@@ -282,10 +284,10 @@ public class Graph {
 				}
 			}
 			
-			vMinusS.remove(currentIndex); // Node u is removed which marks it as visited
-			Node currentNode = nodes[currentIndex];
+			vMinusS.remove(currentIndex); // Current node is removed which marks it as visited
+			Node currentNode = nodes[currentIndex]; // obtain the node of the corresponding index
 			
-			for(Edge edge : currentNode.getEdges()) {
+			for(Edge edge : currentNode.getEdges()) { // explore all neighbours
 				Node neighbour = edge.getToNode();
 				int neighbourIndex = nodeIndex.get(neighbour);
 				
